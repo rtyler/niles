@@ -1,54 +1,7 @@
 Smalltalk current createPackage: 'jQueryMobile' properties: #{}!
-Widget subclass: #JQList
+Widget subclass: #JQPage
 	instanceVariableNames: 'elementId'
 	category: 'jQueryMobile'!
-
-!JQList methodsFor: 'not yet classified'!
-
-renderOn: html
-	html ul 
-		id: self elementId;
-		at: 'data-role' put: 'listview';
-		at: 'data-inset' put: 'true'.
-
-	self asJQuery listview.
-!
-
-asJQuery
-	^ ('#', self elementId) asJQuery.
-!
-
-elementId
-	^ elementId.
-!
-
-withId: aString
-	elementId := aString.
-!
-
-add: aLabel withCallback: aBlock
-	"Add a list item"
-	[ :html |
-		html li with: [ html a href: '#'; with: aLabel; onClick: aBlock ].
-	] appendToJQuery: self asJQuery.
-
-	self asJQuery listview: 'refresh'.
-!
-
-add: aLabel
-	"Add a list item with no callback"
-	^ self add: aLabel withCallback: [].
-!
-
-empty
-	"Clear out the entire list"
-	self asJQuery empty.
-!
-
-addItem: aListItem
-	aListItem appendToJQuery: self asJQuery.
-	self asJQuery listview: 'refresh'.
-! !
 
 Widget subclass: #JQListItem
 	instanceVariableNames: 'elementId href label clickBlock theme iconUrl description'
@@ -107,7 +60,54 @@ withDescription: aDescriptionString
 	description := aDescriptionString.
 ! !
 
-Widget subclass: #JQPage
+Widget subclass: #JQList
 	instanceVariableNames: 'elementId'
 	category: 'jQueryMobile'!
+
+!JQList methodsFor: 'not yet classified'!
+
+renderOn: html
+	html ul 
+		id: self elementId;
+		at: 'data-role' put: 'listview';
+		at: 'data-inset' put: 'true'.
+
+	self asJQuery listview.
+!
+
+asJQuery
+	^ ('#', self elementId) asJQuery.
+!
+
+elementId
+	^ elementId.
+!
+
+withId: aString
+	elementId := aString.
+!
+
+add: aLabel withCallback: aBlock
+	"Add a list item"
+	[ :html |
+		html li with: [ html a href: '#'; with: aLabel; onClick: aBlock ].
+	] appendToJQuery: self asJQuery.
+
+	self asJQuery listview: 'refresh'.
+!
+
+add: aLabel
+	"Add a list item with no callback"
+	^ self add: aLabel withCallback: [].
+!
+
+empty
+	"Clear out the entire list"
+	self asJQuery empty.
+!
+
+addItem: aListItem
+	aListItem appendToJQuery: self asJQuery.
+	self asJQuery listview: 'refresh'.
+! !
 

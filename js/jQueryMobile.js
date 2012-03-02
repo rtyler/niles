@@ -1,136 +1,5 @@
 smalltalk.addPackage('jQueryMobile', {});
-smalltalk.addClass('JQList', smalltalk.Widget, ['elementId'], 'jQueryMobile');
-smalltalk.addMethod(
-unescape('_renderOn_'),
-smalltalk.method({
-selector: unescape('renderOn%3A'),
-category: 'not yet classified',
-fn: function (html){
-var self=this;
-(function($rec){smalltalk.send($rec, "_id_", [smalltalk.send(self, "_elementId", [])]);smalltalk.send($rec, "_at_put_", [unescape("data-role"), "listview"]);return smalltalk.send($rec, "_at_put_", [unescape("data-inset"), "true"]);})(smalltalk.send(html, "_ul", []));
-smalltalk.send(smalltalk.send(self, "_asJQuery", []), "_listview", []);
-return self;},
-args: ["html"],
-source: unescape('renderOn%3A%20html%0A%09html%20ul%20%0A%09%09id%3A%20self%20elementId%3B%0A%09%09at%3A%20%27data-role%27%20put%3A%20%27listview%27%3B%0A%09%09at%3A%20%27data-inset%27%20put%3A%20%27true%27.%0A%0A%09self%20asJQuery%20listview.'),
-messageSends: ["id:", "elementId", "at:put:", "ul", "listview", "asJQuery"],
-referencedClasses: []
-}),
-smalltalk.JQList);
-
-smalltalk.addMethod(
-unescape('_asJQuery'),
-smalltalk.method({
-selector: unescape('asJQuery'),
-category: 'not yet classified',
-fn: function (){
-var self=this;
-return smalltalk.send(smalltalk.send(unescape("%23"), "__comma", [smalltalk.send(self, "_elementId", [])]), "_asJQuery", []);
-return self;},
-args: [],
-source: unescape('asJQuery%0A%09%5E%20%28%27%23%27%2C%20self%20elementId%29%20asJQuery.%0A'),
-messageSends: ["asJQuery", unescape("%2C"), "elementId"],
-referencedClasses: []
-}),
-smalltalk.JQList);
-
-smalltalk.addMethod(
-unescape('_elementId'),
-smalltalk.method({
-selector: unescape('elementId'),
-category: 'not yet classified',
-fn: function (){
-var self=this;
-return self['@elementId'];
-return self;},
-args: [],
-source: unescape('elementId%0A%09%5E%20elementId.'),
-messageSends: [],
-referencedClasses: []
-}),
-smalltalk.JQList);
-
-smalltalk.addMethod(
-unescape('_withId_'),
-smalltalk.method({
-selector: unescape('withId%3A'),
-category: 'not yet classified',
-fn: function (aString){
-var self=this;
-(self['@elementId']=aString);
-return self;},
-args: ["aString"],
-source: unescape('withId%3A%20aString%0A%09elementId%20%3A%3D%20aString.'),
-messageSends: [],
-referencedClasses: []
-}),
-smalltalk.JQList);
-
-smalltalk.addMethod(
-unescape('_add_withCallback_'),
-smalltalk.method({
-selector: unescape('add%3AwithCallback%3A'),
-category: 'not yet classified',
-fn: function (aLabel, aBlock){
-var self=this;
-smalltalk.send((function(html){return smalltalk.send(smalltalk.send(html, "_li", []), "_with_", [(function(){return (function($rec){smalltalk.send($rec, "_href_", [unescape("%23")]);smalltalk.send($rec, "_with_", [aLabel]);return smalltalk.send($rec, "_onClick_", [aBlock]);})(smalltalk.send(html, "_a", []));})]);}), "_appendToJQuery_", [smalltalk.send(self, "_asJQuery", [])]);
-smalltalk.send(smalltalk.send(self, "_asJQuery", []), "_listview_", ["refresh"]);
-return self;},
-args: ["aLabel", "aBlock"],
-source: unescape('add%3A%20aLabel%20withCallback%3A%20aBlock%0A%09%22Add%20a%20list%20item%22%0A%09%5B%20%3Ahtml%20%7C%0A%09%09html%20li%20with%3A%20%5B%20html%20a%20href%3A%20%27%23%27%3B%20with%3A%20aLabel%3B%20onClick%3A%20aBlock%20%5D.%0A%09%5D%20appendToJQuery%3A%20self%20asJQuery.%0A%0A%09self%20asJQuery%20listview%3A%20%27refresh%27.'),
-messageSends: ["appendToJQuery:", "with:", "li", "href:", "onClick:", "a", "asJQuery", "listview:"],
-referencedClasses: []
-}),
-smalltalk.JQList);
-
-smalltalk.addMethod(
-unescape('_add_'),
-smalltalk.method({
-selector: unescape('add%3A'),
-category: 'not yet classified',
-fn: function (aLabel){
-var self=this;
-return smalltalk.send(self, "_add_withCallback_", [aLabel, (function(){return nil;})]);
-return self;},
-args: ["aLabel"],
-source: unescape('add%3A%20aLabel%0A%09%22Add%20a%20list%20item%20with%20no%20callback%22%0A%09%5E%20self%20add%3A%20aLabel%20withCallback%3A%20%5B%5D.%0A'),
-messageSends: ["add:withCallback:"],
-referencedClasses: []
-}),
-smalltalk.JQList);
-
-smalltalk.addMethod(
-unescape('_empty'),
-smalltalk.method({
-selector: unescape('empty'),
-category: 'not yet classified',
-fn: function (){
-var self=this;
-smalltalk.send(smalltalk.send(self, "_asJQuery", []), "_empty", []);
-return self;},
-args: [],
-source: unescape('empty%0A%09%22Clear%20out%20the%20entire%20list%22%0A%09self%20asJQuery%20empty.'),
-messageSends: ["empty", "asJQuery"],
-referencedClasses: []
-}),
-smalltalk.JQList);
-
-smalltalk.addMethod(
-unescape('_addItem_'),
-smalltalk.method({
-selector: unescape('addItem%3A'),
-category: 'not yet classified',
-fn: function (aListItem){
-var self=this;
-smalltalk.send(aListItem, "_appendToJQuery_", [smalltalk.send(self, "_asJQuery", [])]);
-smalltalk.send(smalltalk.send(self, "_asJQuery", []), "_listview_", ["refresh"]);
-return self;},
-args: ["aListItem"],
-source: unescape('addItem%3A%20aListItem%0A%09aListItem%20appendToJQuery%3A%20self%20asJQuery.%0A%09self%20asJQuery%20listview%3A%20%27refresh%27.'),
-messageSends: ["appendToJQuery:", "asJQuery", "listview:"],
-referencedClasses: []
-}),
-smalltalk.JQList);
-
+smalltalk.addClass('JQPage', smalltalk.Widget, ['elementId'], 'jQueryMobile');
 
 
 smalltalk.addClass('JQListItem', smalltalk.Widget, ['elementId', 'href', 'label', 'clickBlock', 'theme', 'iconUrl', 'description'], 'jQueryMobile');
@@ -269,6 +138,137 @@ smalltalk.JQListItem);
 
 
 
-smalltalk.addClass('JQPage', smalltalk.Widget, ['elementId'], 'jQueryMobile');
+smalltalk.addClass('JQList', smalltalk.Widget, ['elementId'], 'jQueryMobile');
+smalltalk.addMethod(
+unescape('_renderOn_'),
+smalltalk.method({
+selector: unescape('renderOn%3A'),
+category: 'not yet classified',
+fn: function (html){
+var self=this;
+(function($rec){smalltalk.send($rec, "_id_", [smalltalk.send(self, "_elementId", [])]);smalltalk.send($rec, "_at_put_", [unescape("data-role"), "listview"]);return smalltalk.send($rec, "_at_put_", [unescape("data-inset"), "true"]);})(smalltalk.send(html, "_ul", []));
+smalltalk.send(smalltalk.send(self, "_asJQuery", []), "_listview", []);
+return self;},
+args: ["html"],
+source: unescape('renderOn%3A%20html%0A%09html%20ul%20%0A%09%09id%3A%20self%20elementId%3B%0A%09%09at%3A%20%27data-role%27%20put%3A%20%27listview%27%3B%0A%09%09at%3A%20%27data-inset%27%20put%3A%20%27true%27.%0A%0A%09self%20asJQuery%20listview.'),
+messageSends: ["id:", "elementId", "at:put:", "ul", "listview", "asJQuery"],
+referencedClasses: []
+}),
+smalltalk.JQList);
+
+smalltalk.addMethod(
+unescape('_asJQuery'),
+smalltalk.method({
+selector: unescape('asJQuery'),
+category: 'not yet classified',
+fn: function (){
+var self=this;
+return smalltalk.send(smalltalk.send(unescape("%23"), "__comma", [smalltalk.send(self, "_elementId", [])]), "_asJQuery", []);
+return self;},
+args: [],
+source: unescape('asJQuery%0A%09%5E%20%28%27%23%27%2C%20self%20elementId%29%20asJQuery.%0A'),
+messageSends: ["asJQuery", unescape("%2C"), "elementId"],
+referencedClasses: []
+}),
+smalltalk.JQList);
+
+smalltalk.addMethod(
+unescape('_elementId'),
+smalltalk.method({
+selector: unescape('elementId'),
+category: 'not yet classified',
+fn: function (){
+var self=this;
+return self['@elementId'];
+return self;},
+args: [],
+source: unescape('elementId%0A%09%5E%20elementId.'),
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.JQList);
+
+smalltalk.addMethod(
+unescape('_withId_'),
+smalltalk.method({
+selector: unescape('withId%3A'),
+category: 'not yet classified',
+fn: function (aString){
+var self=this;
+(self['@elementId']=aString);
+return self;},
+args: ["aString"],
+source: unescape('withId%3A%20aString%0A%09elementId%20%3A%3D%20aString.'),
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.JQList);
+
+smalltalk.addMethod(
+unescape('_add_withCallback_'),
+smalltalk.method({
+selector: unescape('add%3AwithCallback%3A'),
+category: 'not yet classified',
+fn: function (aLabel, aBlock){
+var self=this;
+smalltalk.send((function(html){return smalltalk.send(smalltalk.send(html, "_li", []), "_with_", [(function(){return (function($rec){smalltalk.send($rec, "_href_", [unescape("%23")]);smalltalk.send($rec, "_with_", [aLabel]);return smalltalk.send($rec, "_onClick_", [aBlock]);})(smalltalk.send(html, "_a", []));})]);}), "_appendToJQuery_", [smalltalk.send(self, "_asJQuery", [])]);
+smalltalk.send(smalltalk.send(self, "_asJQuery", []), "_listview_", ["refresh"]);
+return self;},
+args: ["aLabel", "aBlock"],
+source: unescape('add%3A%20aLabel%20withCallback%3A%20aBlock%0A%09%22Add%20a%20list%20item%22%0A%09%5B%20%3Ahtml%20%7C%0A%09%09html%20li%20with%3A%20%5B%20html%20a%20href%3A%20%27%23%27%3B%20with%3A%20aLabel%3B%20onClick%3A%20aBlock%20%5D.%0A%09%5D%20appendToJQuery%3A%20self%20asJQuery.%0A%0A%09self%20asJQuery%20listview%3A%20%27refresh%27.'),
+messageSends: ["appendToJQuery:", "with:", "li", "href:", "onClick:", "a", "asJQuery", "listview:"],
+referencedClasses: []
+}),
+smalltalk.JQList);
+
+smalltalk.addMethod(
+unescape('_add_'),
+smalltalk.method({
+selector: unescape('add%3A'),
+category: 'not yet classified',
+fn: function (aLabel){
+var self=this;
+return smalltalk.send(self, "_add_withCallback_", [aLabel, (function(){return nil;})]);
+return self;},
+args: ["aLabel"],
+source: unescape('add%3A%20aLabel%0A%09%22Add%20a%20list%20item%20with%20no%20callback%22%0A%09%5E%20self%20add%3A%20aLabel%20withCallback%3A%20%5B%5D.%0A'),
+messageSends: ["add:withCallback:"],
+referencedClasses: []
+}),
+smalltalk.JQList);
+
+smalltalk.addMethod(
+unescape('_empty'),
+smalltalk.method({
+selector: unescape('empty'),
+category: 'not yet classified',
+fn: function (){
+var self=this;
+smalltalk.send(smalltalk.send(self, "_asJQuery", []), "_empty", []);
+return self;},
+args: [],
+source: unescape('empty%0A%09%22Clear%20out%20the%20entire%20list%22%0A%09self%20asJQuery%20empty.'),
+messageSends: ["empty", "asJQuery"],
+referencedClasses: []
+}),
+smalltalk.JQList);
+
+smalltalk.addMethod(
+unescape('_addItem_'),
+smalltalk.method({
+selector: unescape('addItem%3A'),
+category: 'not yet classified',
+fn: function (aListItem){
+var self=this;
+smalltalk.send(aListItem, "_appendToJQuery_", [smalltalk.send(self, "_asJQuery", [])]);
+smalltalk.send(smalltalk.send(self, "_asJQuery", []), "_listview_", ["refresh"]);
+return self;},
+args: ["aListItem"],
+source: unescape('addItem%3A%20aListItem%0A%09aListItem%20appendToJQuery%3A%20self%20asJQuery.%0A%09self%20asJQuery%20listview%3A%20%27refresh%27.'),
+messageSends: ["appendToJQuery:", "asJQuery", "listview:"],
+referencedClasses: []
+}),
+smalltalk.JQList);
+
 
 
