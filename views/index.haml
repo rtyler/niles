@@ -1,0 +1,28 @@
+%html
+  %head
+    %title
+      Niles
+    = embed_amber
+    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}/
+    %script{:type => 'text/javascript', :src => '/js/jquery.mobile-1.0.1.js'}
+    %link{:rel => 'stylesheet', :media => 'screen', :href => '/css/jquery.mobile-1.0.1.css'}
+    %script{:type => 'text/javascript'}
+      jQuery.mobile.loadingMessage = false;
+  %body
+    %div{:id => 'niles-home-page', 'data-role' => 'page'}
+      %div{:id => 'niles-header', :class => 'ui-grid-b', 'data-role' => 'header'}
+        %div{:class => 'ui-block-a'}
+          %h3{:style => 'margin-left: 20px;'}
+            Niles
+        %div{:class => 'ui-block-b'}
+          %div{:style => 'margin-top: 10px;'}
+            %input{:id => 'url-input', :value => 'http://ci.jenkins-ci.org/view/Jenkins core/'}/
+        %div{:class => 'ui-block-c'}
+          %div{:style => 'margin-top: 10px;'}
+            %button{:style => 'float: right;', :type => 'submit', :onclick => 'smalltalk.NilesApp._current()._submitForm(); return false;'}
+              Load
+            - if Resin.development?
+              %div{:style => 'float: right;'}
+                %button{:onclick => "smalltalk.Browser._open();"}
+                  Run IDE
+      %div{:id => 'niles-content', 'data-role' => 'content'}
