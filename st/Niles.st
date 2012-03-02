@@ -1,4 +1,40 @@
 Smalltalk current createPackage: 'Niles' properties: #{}!
+Object subclass: #Job
+	instanceVariableNames: 'description url buildable stable'
+	category: 'Niles'!
+
+!Job methodsFor: 'not yet classified'!
+
+initialize
+	name := ''.
+	description := ''.
+	url := ''.
+	buildable := false.
+	stable := false.
+!
+
+fromDictionary: aDictionary
+	name := aDictionary name.
+	url := aDictionary url.
+	description := aDictionary description.
+	buildable := aDictionary buildable.
+	aDictionary color = 'blue'
+		ifTrue: [ stable := true ].
+!
+
+asListItem
+	"Return a JQListItem representing this Job object"
+	| item |
+	item := JQListItem new
+			withLabel: name;
+			withHref: url;
+			withOnClick: [ :event | window alert: ('Navigating to: ',  name). event preventDefault ].
+	stable ifFalse: [ item turnYellow ].
+	description size > 0
+				ifTrue: [ item withDescription: description ].
+	^ item.
+! !
+
 Object subclass: #NilesApp
 	instanceVariableNames: 'list'
 	category: 'Niles'!
@@ -19,17 +55,9 @@ load: aUrl
 	Jenkins fetchFor: aUrl
 		depth: 1
 		onSuccess: [ :data | data jobs do: [ :job |
-			| item |
-			item := JQListItem new
-					withLabel: job name;
-					withHref: job url;
-					withOnClick: [ :event | window alert: ('Navigating to: ', job name). event preventDefault ].
-			job color = 'yellow' ifTrue: [ item turnYellow ].
-			job description size > 0
-				ifTrue: [ item withDescription: job description ].
-			"(job healthReport size) > 0
-				ifTrue: [item addIcon: 'http://ci.jenkins-ci.org/images/48x48/', ((job healthReport at: 1) at: 'iconUrl')].
-			"list addItem: item.]]
+			| item njob |
+			njob := Job new fromDictionary: job.
+			list addItem: njob asListItem.]]
 		onError: [ window alert: 'Fucking fuck' ].
 !
 
