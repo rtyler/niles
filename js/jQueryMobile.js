@@ -1,126 +1,4 @@
 smalltalk.addPackage('jQueryMobile', {});
-smalltalk.addClass('JQPage', smalltalk.Widget, ['elementId'], 'jQueryMobile');
-
-
-smalltalk.addClass('JQListItem', smalltalk.Widget, ['elementId', 'href', 'label', 'clickBlock', 'theme', 'iconUrl'], 'jQueryMobile');
-smalltalk.addMethod(
-unescape('_renderOn_'),
-smalltalk.method({
-selector: unescape('renderOn%3A'),
-category: 'not yet classified',
-fn: function (html){
-var self=this;
-(function($rec){smalltalk.send($rec, "_at_put_", [unescape("data-theme"), self['@theme']]);return smalltalk.send($rec, "_with_", [(function(){return (function($rec){smalltalk.send($rec, "_href_", [self['@href']]);smalltalk.send($rec, "_onClick_", [self['@clickBlock']]);return smalltalk.send($rec, "_with_", [(function(){(($receiver = self['@iconUrl']) != nil && $receiver != undefined) ? (function(){return (function($rec){smalltalk.send($rec, "_src_", [self['@iconUrl']]);return smalltalk.send($rec, "_class_", [unescape("ui-li-thumb%20ui-corner-tl")]);})(smalltalk.send(html, "_img", []));})() : nil;return smalltalk.send(html, "_with_", [self['@label']]);})]);})(smalltalk.send(html, "_a", []));})]);})(smalltalk.send(html, "_li", []));
-return self;},
-args: ["html"],
-source: unescape('renderOn%3A%20html%0A%09html%20li%20%0A%09%09at%3A%20%27data-theme%27%20put%3A%20theme%3B%0A%09%09with%3A%20%5B%0A%09%09%09html%20a%0A%09%09%09%09href%3A%20href%3B%0A%09%09%09%09onClick%3A%20clickBlock%3B%0A%09%09%09%09with%3A%20%5B%0A%09%09%09%09%09iconUrl%20ifNotNil%3A%20%5B%20html%20img%20src%3A%20iconUrl%3B%20class%3A%20%27ui-li-thumb%20ui-corner-tl%27%20%5D.%0A%09%09%09%09%09html%20with%3A%20label%5D%5D.'),
-messageSends: ["at:put:", "with:", "href:", "onClick:", "ifNotNil:", "src:", "class:", "img", "a", "li"],
-referencedClasses: []
-}),
-smalltalk.JQListItem);
-
-smalltalk.addMethod(
-unescape('_initialize'),
-smalltalk.method({
-selector: unescape('initialize'),
-category: 'not yet classified',
-fn: function (){
-var self=this;
-(self['@href']=unescape("%23"));
-(self['@label']="");
-(self['@clickBlock']=(function(){return nil;}));
-(self['@theme']="");
-(self['@iconUrl']=nil);
-return self;},
-args: [],
-source: unescape('initialize%0A%09href%20%3A%3D%20%27%23%27.%0A%09label%20%3A%3D%20%27%27.%0A%09clickBlock%20%3A%3D%20%5B%5D.%0A%09theme%20%3A%3D%20%27%27.%0A%09iconUrl%20%3A%3D%20nil.'),
-messageSends: [],
-referencedClasses: []
-}),
-smalltalk.JQListItem);
-
-smalltalk.addMethod(
-unescape('_withLabel_'),
-smalltalk.method({
-selector: unescape('withLabel%3A'),
-category: 'not yet classified',
-fn: function (aLabelString){
-var self=this;
-(self['@label']=smalltalk.send(aLabelString, "_asString", []));
-return self;},
-args: ["aLabelString"],
-source: unescape('withLabel%3A%20aLabelString%0A%09label%20%3A%3D%20aLabelString%20asString.%0A'),
-messageSends: ["asString"],
-referencedClasses: []
-}),
-smalltalk.JQListItem);
-
-smalltalk.addMethod(
-unescape('_turnYellow'),
-smalltalk.method({
-selector: unescape('turnYellow'),
-category: 'not yet classified',
-fn: function (){
-var self=this;
-(self['@theme']="e");
-return self;},
-args: [],
-source: unescape('turnYellow%0A%09%22%20The%20%27e%27%20theme%20in%20jQuery%20Mobile%20is%20yellowish%20%22%0A%09theme%20%3A%3D%20%27e%27.'),
-messageSends: [],
-referencedClasses: []
-}),
-smalltalk.JQListItem);
-
-smalltalk.addMethod(
-unescape('_addIcon_'),
-smalltalk.method({
-selector: unescape('addIcon%3A'),
-category: 'not yet classified',
-fn: function (aUrl){
-var self=this;
-(self['@iconUrl']=smalltalk.send(aUrl, "_asString", []));
-return self;},
-args: ["aUrl"],
-source: unescape('addIcon%3A%20aUrl%0A%09iconUrl%20%3A%3D%20aUrl%20asString.'),
-messageSends: ["asString"],
-referencedClasses: []
-}),
-smalltalk.JQListItem);
-
-smalltalk.addMethod(
-unescape('_withHref_'),
-smalltalk.method({
-selector: unescape('withHref%3A'),
-category: 'not yet classified',
-fn: function (aUrlString){
-var self=this;
-(self['@href']=aUrlString);
-return self;},
-args: ["aUrlString"],
-source: unescape('withHref%3A%20aUrlString%0A%09href%20%3A%3D%20aUrlString.'),
-messageSends: [],
-referencedClasses: []
-}),
-smalltalk.JQListItem);
-
-smalltalk.addMethod(
-unescape('_withOnClick_'),
-smalltalk.method({
-selector: unescape('withOnClick%3A'),
-category: 'not yet classified',
-fn: function (aBlock){
-var self=this;
-(self['@clickBlock']=aBlock);
-return self;},
-args: ["aBlock"],
-source: unescape('withOnClick%3A%20aBlock%0A%09clickBlock%20%3A%3D%20aBlock.'),
-messageSends: [],
-referencedClasses: []
-}),
-smalltalk.JQListItem);
-
-
-
 smalltalk.addClass('JQList', smalltalk.Widget, ['elementId'], 'jQueryMobile');
 smalltalk.addMethod(
 unescape('_renderOn_'),
@@ -253,5 +131,144 @@ referencedClasses: []
 }),
 smalltalk.JQList);
 
+
+
+smalltalk.addClass('JQListItem', smalltalk.Widget, ['elementId', 'href', 'label', 'clickBlock', 'theme', 'iconUrl', 'description'], 'jQueryMobile');
+smalltalk.addMethod(
+unescape('_renderOn_'),
+smalltalk.method({
+selector: unescape('renderOn%3A'),
+category: 'not yet classified',
+fn: function (html){
+var self=this;
+(function($rec){smalltalk.send($rec, "_at_put_", [unescape("data-theme"), self['@theme']]);return smalltalk.send($rec, "_with_", [(function(){return (function($rec){smalltalk.send($rec, "_href_", [self['@href']]);smalltalk.send($rec, "_onClick_", [self['@clickBlock']]);return smalltalk.send($rec, "_with_", [(function(){(($receiver = self['@iconUrl']) != nil && $receiver != undefined) ? (function(){return (function($rec){smalltalk.send($rec, "_src_", [self['@iconUrl']]);return smalltalk.send($rec, "_class_", [unescape("ui-li-thumb%20ui-corner-tl")]);})(smalltalk.send(html, "_img", []));})() : nil;return (function($rec){(($receiver = $rec) != nil && $receiver != undefined) ? (function(){(function($rec){smalltalk.send($rec, "_class_", [unescape("ui-li-heading")]);return smalltalk.send($rec, "_with_", [self['@label']]);})(smalltalk.send(html, "_h3", []));return (function($rec){smalltalk.send($rec, "_class_", [unescape("ui-li-desc")]);return smalltalk.send($rec, "_with_", [self['@description']]);})(smalltalk.send(html, "_p", []));})() : nil;return (($receiver = $rec) == nil || $receiver == undefined) ? (function(){return smalltalk.send(html, "_with_", [self['@label']]);})() : $receiver;})(self['@description']);})]);})(smalltalk.send(html, "_a", []));})]);})(smalltalk.send(html, "_li", []));
+return self;},
+args: ["html"],
+source: unescape('renderOn%3A%20html%0A%09html%20li%20%0A%09%09at%3A%20%27data-theme%27%20put%3A%20theme%3B%0A%09%09with%3A%20%5B%0A%09%09%09html%20a%0A%09%09%09%09href%3A%20href%3B%0A%09%09%09%09onClick%3A%20clickBlock%3B%0A%09%09%09%09with%3A%20%5B%0A%09%09%09%09%09iconUrl%0A%09%09%09%09%09%09ifNotNil%3A%20%5B%20html%20img%20src%3A%20iconUrl%3B%20class%3A%20%27ui-li-thumb%20ui-corner-tl%27%20%5D.%0A%09%09%09%09%09description%0A%09%09%09%09%09%09ifNotNil%3A%20%5B%0A%09%09%09%09%09%09%09html%20h3%20class%3A%20%27ui-li-heading%27%3B%20with%3A%20label.%0A%09%09%09%09%09%09%09html%20p%20class%3A%20%27ui-li-desc%27%3B%20with%3A%20description%5D%3B%0A%09%09%09%09%09%09ifNil%3A%20%5B%20html%20with%3A%20label%20%5D%5D%5D.'),
+messageSends: ["at:put:", "with:", "href:", "onClick:", "ifNotNil:", "src:", "class:", "img", "h3", "p", "ifNil:", "a", "li"],
+referencedClasses: []
+}),
+smalltalk.JQListItem);
+
+smalltalk.addMethod(
+unescape('_initialize'),
+smalltalk.method({
+selector: unescape('initialize'),
+category: 'not yet classified',
+fn: function (){
+var self=this;
+(self['@href']=unescape("%23"));
+(self['@label']="");
+(self['@clickBlock']=(function(){return nil;}));
+(self['@theme']="");
+(self['@iconUrl']=nil);
+(self['@description']=nil);
+return self;},
+args: [],
+source: unescape('initialize%0A%09href%20%3A%3D%20%27%23%27.%0A%09label%20%3A%3D%20%27%27.%0A%09clickBlock%20%3A%3D%20%5B%5D.%0A%09theme%20%3A%3D%20%27%27.%0A%09iconUrl%20%3A%3D%20nil.%0A%09description%20%3A%3D%20nil.'),
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.JQListItem);
+
+smalltalk.addMethod(
+unescape('_withLabel_'),
+smalltalk.method({
+selector: unescape('withLabel%3A'),
+category: 'not yet classified',
+fn: function (aLabelString){
+var self=this;
+(self['@label']=smalltalk.send(aLabelString, "_asString", []));
+return self;},
+args: ["aLabelString"],
+source: unescape('withLabel%3A%20aLabelString%0A%09label%20%3A%3D%20aLabelString%20asString.%0A'),
+messageSends: ["asString"],
+referencedClasses: []
+}),
+smalltalk.JQListItem);
+
+smalltalk.addMethod(
+unescape('_turnYellow'),
+smalltalk.method({
+selector: unescape('turnYellow'),
+category: 'not yet classified',
+fn: function (){
+var self=this;
+(self['@theme']="e");
+return self;},
+args: [],
+source: unescape('turnYellow%0A%09%22%20The%20%27e%27%20theme%20in%20jQuery%20Mobile%20is%20yellowish%20%22%0A%09theme%20%3A%3D%20%27e%27.'),
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.JQListItem);
+
+smalltalk.addMethod(
+unescape('_addIcon_'),
+smalltalk.method({
+selector: unescape('addIcon%3A'),
+category: 'not yet classified',
+fn: function (aUrl){
+var self=this;
+(self['@iconUrl']=smalltalk.send(aUrl, "_asString", []));
+return self;},
+args: ["aUrl"],
+source: unescape('addIcon%3A%20aUrl%0A%09iconUrl%20%3A%3D%20aUrl%20asString.'),
+messageSends: ["asString"],
+referencedClasses: []
+}),
+smalltalk.JQListItem);
+
+smalltalk.addMethod(
+unescape('_withHref_'),
+smalltalk.method({
+selector: unescape('withHref%3A'),
+category: 'not yet classified',
+fn: function (aUrlString){
+var self=this;
+(self['@href']=aUrlString);
+return self;},
+args: ["aUrlString"],
+source: unescape('withHref%3A%20aUrlString%0A%09href%20%3A%3D%20aUrlString.'),
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.JQListItem);
+
+smalltalk.addMethod(
+unescape('_withOnClick_'),
+smalltalk.method({
+selector: unescape('withOnClick%3A'),
+category: 'not yet classified',
+fn: function (aBlock){
+var self=this;
+(self['@clickBlock']=aBlock);
+return self;},
+args: ["aBlock"],
+source: unescape('withOnClick%3A%20aBlock%0A%09clickBlock%20%3A%3D%20aBlock.'),
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.JQListItem);
+
+smalltalk.addMethod(
+unescape('_withDescription_'),
+smalltalk.method({
+selector: unescape('withDescription%3A'),
+category: 'not yet classified',
+fn: function (aDescriptionString){
+var self=this;
+(self['@description']=aDescriptionString);
+return self;},
+args: ["aDescriptionString"],
+source: unescape('withDescription%3A%20aDescriptionString%0A%09description%20%3A%3D%20aDescriptionString.'),
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.JQListItem);
+
+
+
+smalltalk.addClass('JQPage', smalltalk.Widget, ['elementId'], 'jQueryMobile');
 
 

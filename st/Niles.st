@@ -20,8 +20,13 @@ load: aUrl
 		depth: 1
 		onSuccess: [ :data | data jobs do: [ :job |
 			| item |
-			item := JQListItem new withLabel: job name; withOnClick: [ :event | window alert: ('Navigating to: ', job name) ].
+			item := JQListItem new
+					withLabel: job name;
+					withHref: job url;
+					withOnClick: [ :event | window alert: ('Navigating to: ', job name). event preventDefault ].
 			job color = 'yellow' ifTrue: [ item turnYellow ].
+			job description size > 0
+				ifTrue: [ item withDescription: job description ].
 			"(job healthReport size) > 0
 				ifTrue: [item addIcon: 'http://ci.jenkins-ci.org/images/48x48/', ((job healthReport at: 1) at: 'iconUrl')].
 			"list addItem: item.]]
