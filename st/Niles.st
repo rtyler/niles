@@ -1,20 +1,20 @@
 Smalltalk current createPackage: 'Niles' properties: #{}!
 Object subclass: #Job
-	instanceVariableNames: 'description url buildable stable'
+	instanceVariableNames: 'description url buildable stable myname'
 	category: 'Niles'!
 
 !Job methodsFor: 'not yet classified'!
 
 initialize
-	name := ''.
 	description := ''.
 	url := ''.
 	buildable := false.
 	stable := false.
+	myname := ''.
 !
 
 fromDictionary: aDictionary
-	name := aDictionary name.
+	myname := aDictionary name.
 	url := aDictionary url.
 	description := aDictionary description.
 	buildable := aDictionary buildable.
@@ -26,9 +26,13 @@ asListItem
 	"Return a JQListItem representing this Job object"
 	| item |
 	item := JQListItem new
-			withLabel: name;
-			withHref: url;
-			withOnClick: [ :event | window alert: ('Navigating to: ',  name). event preventDefault ].
+			withLabel: myname;
+			withOnClick: [ :event |
+				| page |
+				page := JQPage new named: myname.
+				page appendToJQuery: 'body' asJQuery.
+				<jQuery.mobile.changePage('#' + page._elementId());>.
+				event preventDefault ].
 	stable ifFalse: [ item turnYellow ].
 	description size > 0
 				ifTrue: [ item withDescription: description ].

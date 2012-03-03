@@ -1,5 +1,71 @@
 smalltalk.addPackage('jQueryMobile', {});
 smalltalk.addClass('JQPage', smalltalk.Widget, ['elementId'], 'jQueryMobile');
+smalltalk.addMethod(
+unescape('_initialize'),
+smalltalk.method({
+selector: unescape('initialize'),
+fn: function (){
+var self=this;
+(name="");
+return self;}
+}),
+smalltalk.JQPage);
+
+smalltalk.addMethod(
+unescape('_named_'),
+smalltalk.method({
+selector: unescape('named%3A'),
+fn: function (aName){
+var self=this;
+(name=aName);
+return self;}
+}),
+smalltalk.JQPage);
+
+smalltalk.addMethod(
+unescape('_renderOn_'),
+smalltalk.method({
+selector: unescape('renderOn%3A'),
+fn: function (html){
+var self=this;
+(function($rec){smalltalk.send($rec, "_id_", [smalltalk.send(self, "_elementId", [])]);smalltalk.send($rec, "_at_put_", [unescape("data-role"), "page"]);return smalltalk.send($rec, "_with_", [(function(){(function($rec){smalltalk.send($rec, "_at_put_", [unescape("data-role"), "header"]);return smalltalk.send($rec, "_with_", [(typeof name == 'undefined' ? nil : name)]);})(smalltalk.send(html, "_div", []));return (function($rec){smalltalk.send($rec, "_at_put_", [unescape("data-role"), "content"]);return smalltalk.send($rec, "_with_", [(function(){return smalltalk.send(self, "_renderContentOn_", [html]);})]);})(smalltalk.send(html, "_div", []));})]);})(smalltalk.send(html, "_div", []));
+return self;}
+}),
+smalltalk.JQPage);
+
+smalltalk.addMethod(
+unescape('_renderContentOn_'),
+smalltalk.method({
+selector: unescape('renderContentOn%3A'),
+fn: function (html){
+var self=this;
+smalltalk.send(html, "_with_", ["Fancy"]);
+return self;}
+}),
+smalltalk.JQPage);
+
+smalltalk.addMethod(
+unescape('_elementId'),
+smalltalk.method({
+selector: unescape('elementId'),
+fn: function (){
+var self=this;
+return smalltalk.send(unescape("page-"), "__comma", [(typeof name == 'undefined' ? nil : name)]);
+return self;}
+}),
+smalltalk.JQPage);
+
+smalltalk.addMethod(
+unescape('_asJQuery'),
+smalltalk.method({
+selector: unescape('asJQuery'),
+fn: function (){
+var self=this;
+return smalltalk.send(smalltalk.send(unescape("%23"), "__comma", [smalltalk.send(self, "_elementId", [])]), "_asJQuery", []);
+return self;}
+}),
+smalltalk.JQPage);
+
 
 
 smalltalk.addClass('JQListItem', smalltalk.Widget, ['elementId', 'href', 'label', 'clickBlock', 'theme', 'iconUrl', 'description'], 'jQueryMobile');

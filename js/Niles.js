@@ -1,5 +1,5 @@
 smalltalk.addPackage('Niles', {});
-smalltalk.addClass('Job', smalltalk.Object, ['description', 'url', 'buildable', 'stable'], 'Niles');
+smalltalk.addClass('Job', smalltalk.Object, ['description', 'url', 'buildable', 'stable', 'myname'], 'Niles');
 smalltalk.addMethod(
 unescape('_initialize'),
 smalltalk.method({
@@ -7,14 +7,14 @@ selector: unescape('initialize'),
 category: 'not yet classified',
 fn: function (){
 var self=this;
-(name="");
 (self['@description']="");
 (self['@url']="");
 (self['@buildable']=false);
 (self['@stable']=false);
+(self['@myname']="");
 return self;},
 args: [],
-source: unescape('initialize%0A%09name%20%3A%3D%20%27%27.%0A%09description%20%3A%3D%20%27%27.%0A%09url%20%3A%3D%20%27%27.%0A%09buildable%20%3A%3D%20false.%0A%09stable%20%3A%3D%20false.'),
+source: unescape('initialize%0A%09description%20%3A%3D%20%27%27.%0A%09url%20%3A%3D%20%27%27.%0A%09buildable%20%3A%3D%20false.%0A%09stable%20%3A%3D%20false.%0A%09myname%20%3A%3D%20%27%27.'),
 messageSends: [],
 referencedClasses: []
 }),
@@ -27,14 +27,14 @@ selector: unescape('fromDictionary%3A'),
 category: 'not yet classified',
 fn: function (aDictionary){
 var self=this;
-(name=smalltalk.send(aDictionary, "_name", []));
+(self['@myname']=smalltalk.send(aDictionary, "_name", []));
 (self['@url']=smalltalk.send(aDictionary, "_url", []));
 (self['@description']=smalltalk.send(aDictionary, "_description", []));
 (self['@buildable']=smalltalk.send(aDictionary, "_buildable", []));
 ((($receiver = smalltalk.send(smalltalk.send(aDictionary, "_color", []), "__eq", ["blue"])).klass === smalltalk.Boolean) ? ($receiver ? (function(){return (self['@stable']=true);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return (self['@stable']=true);})]));
 return self;},
 args: ["aDictionary"],
-source: unescape('fromDictionary%3A%20aDictionary%0A%09name%20%3A%3D%20aDictionary%20name.%0A%09url%20%3A%3D%20aDictionary%20url.%0A%09description%20%3A%3D%20aDictionary%20description.%0A%09buildable%20%3A%3D%20aDictionary%20buildable.%0A%09aDictionary%20color%20%3D%20%27blue%27%0A%09%09ifTrue%3A%20%5B%20stable%20%3A%3D%20true%20%5D.'),
+source: unescape('fromDictionary%3A%20aDictionary%0A%09myname%20%3A%3D%20aDictionary%20name.%0A%09url%20%3A%3D%20aDictionary%20url.%0A%09description%20%3A%3D%20aDictionary%20description.%0A%09buildable%20%3A%3D%20aDictionary%20buildable.%0A%09aDictionary%20color%20%3D%20%27blue%27%0A%09%09ifTrue%3A%20%5B%20stable%20%3A%3D%20true%20%5D.'),
 messageSends: ["name", "url", "description", "buildable", "ifTrue:", unescape("%3D"), "color"],
 referencedClasses: []
 }),
@@ -48,15 +48,16 @@ category: 'not yet classified',
 fn: function (){
 var self=this;
 var item=nil;
-(item=(function($rec){smalltalk.send($rec, "_withLabel_", [(typeof name == 'undefined' ? nil : name)]);smalltalk.send($rec, "_withHref_", [self['@url']]);return smalltalk.send($rec, "_withOnClick_", [(function(event){smalltalk.send((typeof window == 'undefined' ? nil : window), "_alert_", [smalltalk.send("Navigating to: ", "__comma", [(typeof name == 'undefined' ? nil : name)])]);return smalltalk.send(event, "_preventDefault", []);})]);})(smalltalk.send((smalltalk.JQListItem || JQListItem), "_new", [])));
+(item=(function($rec){smalltalk.send($rec, "_withLabel_", [self['@myname']]);return smalltalk.send($rec, "_withOnClick_", [(function(event){var page=nil;
+(page=smalltalk.send(smalltalk.send((smalltalk.JQPage || JQPage), "_new", []), "_named_", [self['@myname']]));smalltalk.send(page, "_appendToJQuery_", [smalltalk.send("body", "_asJQuery", [])]);jQuery.mobile.changePage('#' + page._elementId());;return smalltalk.send(event, "_preventDefault", []);})]);})(smalltalk.send((smalltalk.JQListItem || JQListItem), "_new", [])));
 ((($receiver = self['@stable']).klass === smalltalk.Boolean) ? (! $receiver ? (function(){return smalltalk.send(item, "_turnYellow", []);})() : nil) : smalltalk.send($receiver, "_ifFalse_", [(function(){return smalltalk.send(item, "_turnYellow", []);})]));
 ((($receiver = ((($receiver = smalltalk.send(self['@description'], "_size", [])).klass === smalltalk.Number) ? $receiver >(0) : smalltalk.send($receiver, "__gt", [(0)]))).klass === smalltalk.Boolean) ? ($receiver ? (function(){return smalltalk.send(item, "_withDescription_", [self['@description']]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return smalltalk.send(item, "_withDescription_", [self['@description']]);})]));
 return item;
 return self;},
 args: [],
-source: unescape('asListItem%0A%09%22Return%20a%20JQListItem%20representing%20this%20Job%20object%22%0A%09%7C%20item%20%7C%0A%09item%20%3A%3D%20JQListItem%20new%0A%09%09%09withLabel%3A%20name%3B%0A%09%09%09withHref%3A%20url%3B%0A%09%09%09withOnClick%3A%20%5B%20%3Aevent%20%7C%20window%20alert%3A%20%28%27Navigating%20to%3A%20%27%2C%20%20name%29.%20event%20preventDefault%20%5D.%0A%09stable%20ifFalse%3A%20%5B%20item%20turnYellow%20%5D.%0A%09description%20size%20%3E%200%0A%09%09%09%09ifTrue%3A%20%5B%20item%20withDescription%3A%20description%20%5D.%0A%09%5E%20item.'),
-messageSends: ["withLabel:", "withHref:", "withOnClick:", "alert:", unescape("%2C"), "preventDefault", "new", "ifFalse:", "turnYellow", "ifTrue:", unescape("%3E"), "size", "withDescription:"],
-referencedClasses: ["JQListItem"]
+source: unescape('asListItem%0A%09%22Return%20a%20JQListItem%20representing%20this%20Job%20object%22%0A%09%7C%20item%20%7C%0A%09item%20%3A%3D%20JQListItem%20new%0A%09%09%09withLabel%3A%20myname%3B%0A%09%09%09withOnClick%3A%20%5B%20%3Aevent%20%7C%0A%09%09%09%09%7C%20page%20%7C%0A%09%09%09%09page%20%3A%3D%20JQPage%20new%20named%3A%20myname.%0A%09%09%09%09page%20appendToJQuery%3A%20%27body%27%20asJQuery.%0A%09%09%09%09%3CjQuery.mobile.changePage%28%27%23%27%20+%20page._elementId%28%29%29%3B%3E.%0A%09%09%09%09event%20preventDefault%20%5D.%0A%09stable%20ifFalse%3A%20%5B%20item%20turnYellow%20%5D.%0A%09description%20size%20%3E%200%0A%09%09%09%09ifTrue%3A%20%5B%20item%20withDescription%3A%20description%20%5D.%0A%09%5E%20item.'),
+messageSends: ["withLabel:", "withOnClick:", "named:", "new", "appendToJQuery:", "asJQuery", "preventDefault", "ifFalse:", "turnYellow", "ifTrue:", unescape("%3E"), "size", "withDescription:"],
+referencedClasses: ["JQPage", "JQListItem"]
 }),
 smalltalk.Job);
 

@@ -1,5 +1,101 @@
 smalltalk.addPackage('jQueryMobile', {});
 smalltalk.addClass('JQPage', smalltalk.Widget, ['elementId'], 'jQueryMobile');
+smalltalk.addMethod(
+unescape('_initialize'),
+smalltalk.method({
+selector: unescape('initialize'),
+category: 'not yet classified',
+fn: function (){
+var self=this;
+(name="");
+return self;},
+args: [],
+source: unescape('initialize%0A%09name%20%3A%3D%20%27%27.'),
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.JQPage);
+
+smalltalk.addMethod(
+unescape('_named_'),
+smalltalk.method({
+selector: unescape('named%3A'),
+category: 'not yet classified',
+fn: function (aName){
+var self=this;
+(name=aName);
+return self;},
+args: ["aName"],
+source: unescape('named%3A%20aName%0A%09name%20%3A%3D%20aName.'),
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.JQPage);
+
+smalltalk.addMethod(
+unescape('_renderOn_'),
+smalltalk.method({
+selector: unescape('renderOn%3A'),
+category: 'not yet classified',
+fn: function (html){
+var self=this;
+(function($rec){smalltalk.send($rec, "_id_", [smalltalk.send(self, "_elementId", [])]);smalltalk.send($rec, "_at_put_", [unescape("data-role"), "page"]);return smalltalk.send($rec, "_with_", [(function(){(function($rec){smalltalk.send($rec, "_at_put_", [unescape("data-role"), "header"]);return smalltalk.send($rec, "_with_", [(typeof name == 'undefined' ? nil : name)]);})(smalltalk.send(html, "_div", []));return (function($rec){smalltalk.send($rec, "_at_put_", [unescape("data-role"), "content"]);return smalltalk.send($rec, "_with_", [(function(){return smalltalk.send(self, "_renderContentOn_", [html]);})]);})(smalltalk.send(html, "_div", []));})]);})(smalltalk.send(html, "_div", []));
+return self;},
+args: ["html"],
+source: unescape('renderOn%3A%20html%0A%09html%20div%0A%09%09id%3A%20self%20elementId%3B%0A%09%09at%3A%20%27data-role%27%20put%3A%20%27page%27%3B%0A%09%09with%3A%20%5B%0A%09%09%09html%20div%0A%09%09%09%09at%3A%20%27data-role%27%20put%3A%20%27header%27%3B%0A%09%09%09%09with%3A%20name.%0A%09%09%09html%20div%0A%09%09%09%09at%3A%20%27data-role%27%20put%3A%20%27content%27%3B%0A%09%09%09%09with%3A%20%5B%20self%20renderContentOn%3A%20html%20%5D%5D.%0A'),
+messageSends: ["id:", "elementId", "at:put:", "with:", "div", "renderContentOn:"],
+referencedClasses: []
+}),
+smalltalk.JQPage);
+
+smalltalk.addMethod(
+unescape('_renderContentOn_'),
+smalltalk.method({
+selector: unescape('renderContentOn%3A'),
+category: 'not yet classified',
+fn: function (html){
+var self=this;
+smalltalk.send(html, "_with_", ["Fancy"]);
+return self;},
+args: ["html"],
+source: unescape('renderContentOn%3A%20html%0A%09html%20with%3A%20%27Fancy%27.'),
+messageSends: ["with:"],
+referencedClasses: []
+}),
+smalltalk.JQPage);
+
+smalltalk.addMethod(
+unescape('_elementId'),
+smalltalk.method({
+selector: unescape('elementId'),
+category: 'not yet classified',
+fn: function (){
+var self=this;
+return smalltalk.send(unescape("page-"), "__comma", [(typeof name == 'undefined' ? nil : name)]);
+return self;},
+args: [],
+source: unescape('elementId%0A%09%5E%20%27page-%27%2C%20name.'),
+messageSends: [unescape("%2C")],
+referencedClasses: []
+}),
+smalltalk.JQPage);
+
+smalltalk.addMethod(
+unescape('_asJQuery'),
+smalltalk.method({
+selector: unescape('asJQuery'),
+category: 'not yet classified',
+fn: function (){
+var self=this;
+return smalltalk.send(smalltalk.send(unescape("%23"), "__comma", [smalltalk.send(self, "_elementId", [])]), "_asJQuery", []);
+return self;},
+args: [],
+source: unescape('asJQuery%0A%09%5E%20%28%27%23%27%2C%20self%20elementId%29%20asJQuery.'),
+messageSends: ["asJQuery", unescape("%2C"), "elementId"],
+referencedClasses: []
+}),
+smalltalk.JQPage);
+
 
 
 smalltalk.addClass('JQListItem', smalltalk.Widget, ['elementId', 'href', 'label', 'clickBlock', 'theme', 'iconUrl', 'description'], 'jQueryMobile');

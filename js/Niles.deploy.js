@@ -1,16 +1,16 @@
 smalltalk.addPackage('Niles', {});
-smalltalk.addClass('Job', smalltalk.Object, ['description', 'url', 'buildable', 'stable'], 'Niles');
+smalltalk.addClass('Job', smalltalk.Object, ['description', 'url', 'buildable', 'stable', 'myname'], 'Niles');
 smalltalk.addMethod(
 unescape('_initialize'),
 smalltalk.method({
 selector: unescape('initialize'),
 fn: function (){
 var self=this;
-(name="");
 (self['@description']="");
 (self['@url']="");
 (self['@buildable']=false);
 (self['@stable']=false);
+(self['@myname']="");
 return self;}
 }),
 smalltalk.Job);
@@ -21,7 +21,7 @@ smalltalk.method({
 selector: unescape('fromDictionary%3A'),
 fn: function (aDictionary){
 var self=this;
-(name=smalltalk.send(aDictionary, "_name", []));
+(self['@myname']=smalltalk.send(aDictionary, "_name", []));
 (self['@url']=smalltalk.send(aDictionary, "_url", []));
 (self['@description']=smalltalk.send(aDictionary, "_description", []));
 (self['@buildable']=smalltalk.send(aDictionary, "_buildable", []));
@@ -37,7 +37,8 @@ selector: unescape('asListItem'),
 fn: function (){
 var self=this;
 var item=nil;
-(item=(function($rec){smalltalk.send($rec, "_withLabel_", [(typeof name == 'undefined' ? nil : name)]);smalltalk.send($rec, "_withHref_", [self['@url']]);return smalltalk.send($rec, "_withOnClick_", [(function(event){smalltalk.send((typeof window == 'undefined' ? nil : window), "_alert_", [smalltalk.send("Navigating to: ", "__comma", [(typeof name == 'undefined' ? nil : name)])]);return smalltalk.send(event, "_preventDefault", []);})]);})(smalltalk.send((smalltalk.JQListItem || JQListItem), "_new", [])));
+(item=(function($rec){smalltalk.send($rec, "_withLabel_", [self['@myname']]);return smalltalk.send($rec, "_withOnClick_", [(function(event){var page=nil;
+(page=smalltalk.send(smalltalk.send((smalltalk.JQPage || JQPage), "_new", []), "_named_", [self['@myname']]));smalltalk.send(page, "_appendToJQuery_", [smalltalk.send("body", "_asJQuery", [])]);jQuery.mobile.changePage('#' + page._elementId());;return smalltalk.send(event, "_preventDefault", []);})]);})(smalltalk.send((smalltalk.JQListItem || JQListItem), "_new", [])));
 ((($receiver = self['@stable']).klass === smalltalk.Boolean) ? (! $receiver ? (function(){return smalltalk.send(item, "_turnYellow", []);})() : nil) : smalltalk.send($receiver, "_ifFalse_", [(function(){return smalltalk.send(item, "_turnYellow", []);})]));
 ((($receiver = ((($receiver = smalltalk.send(self['@description'], "_size", [])).klass === smalltalk.Number) ? $receiver >(0) : smalltalk.send($receiver, "__gt", [(0)]))).klass === smalltalk.Boolean) ? ($receiver ? (function(){return smalltalk.send(item, "_withDescription_", [self['@description']]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return smalltalk.send(item, "_withDescription_", [self['@description']]);})]));
 return item;

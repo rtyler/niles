@@ -3,6 +3,41 @@ Widget subclass: #JQPage
 	instanceVariableNames: 'elementId'
 	category: 'jQueryMobile'!
 
+!JQPage methodsFor: 'not yet classified'!
+
+initialize
+	name := ''.
+!
+
+named: aName
+	name := aName.
+!
+
+renderOn: html
+	html div
+		id: self elementId;
+		at: 'data-role' put: 'page';
+		with: [
+			html div
+				at: 'data-role' put: 'header';
+				with: name.
+			html div
+				at: 'data-role' put: 'content';
+				with: [ self renderContentOn: html ]].
+!
+
+renderContentOn: html
+	html with: 'Fancy'.
+!
+
+elementId
+	^ 'page-', name.
+!
+
+asJQuery
+	^ ('#', self elementId) asJQuery.
+! !
+
 Widget subclass: #JQListItem
 	instanceVariableNames: 'elementId href label clickBlock theme iconUrl description'
 	category: 'jQueryMobile'!
