@@ -1,55 +1,4 @@
 Smalltalk current createPackage: 'Niles' properties: #{}!
-Object subclass: #Job
-	instanceVariableNames: 'description url buildable stable myname page'
-	category: 'Niles'!
-
-!Job methodsFor: 'not yet classified'!
-
-initialize
-	description := ''.
-	url := ''.
-	buildable := false.
-	stable := false.
-	myname := ''.
-!
-
-fromDictionary: aDictionary
-	myname := aDictionary name.
-	url := aDictionary url.
-	description := aDictionary description.
-	buildable := aDictionary buildable.
-	aDictionary color = 'blue'
-		ifTrue: [ stable := true ].
-!
-
-asListItem
-	"Return a JQListItem representing this Job object"
-	| item |
-	item := JQListItem new
-			withLabel: myname;
-			withOnClick: [ :event |
-				| page |
-				page := self asPage.
-				page appendToJQuery: 'body' asJQuery.
-				<jQuery.mobile.changePage('#' + page._elementId());>.
-				event preventDefault ].
-	stable ifFalse: [ item turnYellow ].
-	description size > 0
-				ifTrue: [ item withDescription: description ].
-	^ item.
-!
-
-asPage
-	^ page ifNil: [
-		page := JQPage new
-				withContent: [ :html | self renderPageOn: html ];
-				named: myname].
-!
-
-renderPageOn: html
-	html with: 'I am the renderPageOn method for: ', myname.
-! !
-
 Object subclass: #NilesApp
 	instanceVariableNames: 'list'
 	category: 'Niles'!
@@ -88,5 +37,58 @@ current
 	"Return the current instance (singleton) of NilesApp"
 	^ app
 		ifNil: [ app := super new ].
+! !
+
+Object subclass: #Job
+	instanceVariableNames: 'description url buildable stable myname page'
+	category: 'Niles'!
+
+!Job methodsFor: 'not yet classified'!
+
+initialize
+	description := ''.
+	url := ''.
+	buildable := false.
+	stable := false.
+	myname := ''.
+!
+
+fromDictionary: aDictionary
+	myname := aDictionary name.
+	url := aDictionary url.
+	"For some reason with older versions of Jenkins, when you call 'aDictionary description' a DoesNotUnderstandMessage
+	 exception is raised, despite the Inspector /showing/ a '`description' message being apparently available."
+	description := (aDictionary at: 'description') ifNil: [ '' ].
+	buildable := aDictionary buildable.
+	aDictionary color = 'blue'
+		ifTrue: [ stable := true ].
+!
+
+asListItem
+	"Return a JQListItem representing this Job object"
+	| item |
+	item := JQListItem new
+			withLabel: myname;
+			withOnClick: [ :event |
+				| page |
+				page := self asPage.
+				page appendToJQuery: 'body' asJQuery.
+				<jQuery.mobile.changePage('#' + page._elementId());>.
+				event preventDefault ].
+	stable ifFalse: [ item turnYellow ].
+	description size > 0
+				ifTrue: [ item withDescription: description ].
+	^ item.
+!
+
+asPage
+	^ page ifNil: [
+		page := JQPage new
+				withContent: [ :html | self renderPageOn: html ];
+				named: myname].
+!
+
+renderPageOn: html
+	html with: 'I am the renderPageOn method for: ', myname.
 ! !
 
