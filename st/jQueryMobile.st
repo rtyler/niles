@@ -1,12 +1,13 @@
 Smalltalk current createPackage: 'jQueryMobile' properties: #{}!
 Widget subclass: #JQPage
-	instanceVariableNames: 'elementId'
+	instanceVariableNames: 'elementId contentBlock'
 	category: 'jQueryMobile'!
 
 !JQPage methodsFor: 'not yet classified'!
 
 initialize
 	name := ''.
+	contentBlock := [].
 !
 
 named: aName
@@ -23,11 +24,7 @@ renderOn: html
 				with: name.
 			html div
 				at: 'data-role' put: 'content';
-				with: [ self renderContentOn: html ]].
-!
-
-renderContentOn: html
-	html with: 'Fancy'.
+				with: [ contentBlock value: html ]].
 !
 
 elementId
@@ -36,6 +33,10 @@ elementId
 
 asJQuery
 	^ ('#', self elementId) asJQuery.
+!
+
+withContent: aBlock
+	contentBlock := aBlock.
 ! !
 
 Widget subclass: #JQListItem

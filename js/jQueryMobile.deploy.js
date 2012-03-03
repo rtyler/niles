@@ -1,5 +1,5 @@
 smalltalk.addPackage('jQueryMobile', {});
-smalltalk.addClass('JQPage', smalltalk.Widget, ['elementId'], 'jQueryMobile');
+smalltalk.addClass('JQPage', smalltalk.Widget, ['elementId', 'contentBlock'], 'jQueryMobile');
 smalltalk.addMethod(
 unescape('_initialize'),
 smalltalk.method({
@@ -7,6 +7,7 @@ selector: unescape('initialize'),
 fn: function (){
 var self=this;
 (name="");
+(self['@contentBlock']=(function(){return nil;}));
 return self;}
 }),
 smalltalk.JQPage);
@@ -28,18 +29,7 @@ smalltalk.method({
 selector: unescape('renderOn%3A'),
 fn: function (html){
 var self=this;
-(function($rec){smalltalk.send($rec, "_id_", [smalltalk.send(self, "_elementId", [])]);smalltalk.send($rec, "_at_put_", [unescape("data-role"), "page"]);return smalltalk.send($rec, "_with_", [(function(){(function($rec){smalltalk.send($rec, "_at_put_", [unescape("data-role"), "header"]);return smalltalk.send($rec, "_with_", [(typeof name == 'undefined' ? nil : name)]);})(smalltalk.send(html, "_div", []));return (function($rec){smalltalk.send($rec, "_at_put_", [unescape("data-role"), "content"]);return smalltalk.send($rec, "_with_", [(function(){return smalltalk.send(self, "_renderContentOn_", [html]);})]);})(smalltalk.send(html, "_div", []));})]);})(smalltalk.send(html, "_div", []));
-return self;}
-}),
-smalltalk.JQPage);
-
-smalltalk.addMethod(
-unescape('_renderContentOn_'),
-smalltalk.method({
-selector: unescape('renderContentOn%3A'),
-fn: function (html){
-var self=this;
-smalltalk.send(html, "_with_", ["Fancy"]);
+(function($rec){smalltalk.send($rec, "_id_", [smalltalk.send(self, "_elementId", [])]);smalltalk.send($rec, "_at_put_", [unescape("data-role"), "page"]);return smalltalk.send($rec, "_with_", [(function(){(function($rec){smalltalk.send($rec, "_at_put_", [unescape("data-role"), "header"]);return smalltalk.send($rec, "_with_", [(typeof name == 'undefined' ? nil : name)]);})(smalltalk.send(html, "_div", []));return (function($rec){smalltalk.send($rec, "_at_put_", [unescape("data-role"), "content"]);return smalltalk.send($rec, "_with_", [(function(){return smalltalk.send(self['@contentBlock'], "_value_", [html]);})]);})(smalltalk.send(html, "_div", []));})]);})(smalltalk.send(html, "_div", []));
 return self;}
 }),
 smalltalk.JQPage);
@@ -62,6 +52,17 @@ selector: unescape('asJQuery'),
 fn: function (){
 var self=this;
 return smalltalk.send(smalltalk.send(unescape("%23"), "__comma", [smalltalk.send(self, "_elementId", [])]), "_asJQuery", []);
+return self;}
+}),
+smalltalk.JQPage);
+
+smalltalk.addMethod(
+unescape('_withContent_'),
+smalltalk.method({
+selector: unescape('withContent%3A'),
+fn: function (aBlock){
+var self=this;
+(self['@contentBlock']=aBlock);
 return self;}
 }),
 smalltalk.JQPage);

@@ -1,5 +1,5 @@
 smalltalk.addPackage('Niles', {});
-smalltalk.addClass('Job', smalltalk.Object, ['description', 'url', 'buildable', 'stable', 'myname'], 'Niles');
+smalltalk.addClass('Job', smalltalk.Object, ['description', 'url', 'buildable', 'stable', 'myname', 'page'], 'Niles');
 smalltalk.addMethod(
 unescape('_initialize'),
 smalltalk.method({
@@ -38,10 +38,32 @@ fn: function (){
 var self=this;
 var item=nil;
 (item=(function($rec){smalltalk.send($rec, "_withLabel_", [self['@myname']]);return smalltalk.send($rec, "_withOnClick_", [(function(event){var page=nil;
-(page=smalltalk.send(smalltalk.send((smalltalk.JQPage || JQPage), "_new", []), "_named_", [self['@myname']]));smalltalk.send(page, "_appendToJQuery_", [smalltalk.send("body", "_asJQuery", [])]);jQuery.mobile.changePage('#' + page._elementId());;return smalltalk.send(event, "_preventDefault", []);})]);})(smalltalk.send((smalltalk.JQListItem || JQListItem), "_new", [])));
+(page=smalltalk.send(self, "_asPage", []));smalltalk.send(page, "_appendToJQuery_", [smalltalk.send("body", "_asJQuery", [])]);jQuery.mobile.changePage('#' + page._elementId());;return smalltalk.send(event, "_preventDefault", []);})]);})(smalltalk.send((smalltalk.JQListItem || JQListItem), "_new", [])));
 ((($receiver = self['@stable']).klass === smalltalk.Boolean) ? (! $receiver ? (function(){return smalltalk.send(item, "_turnYellow", []);})() : nil) : smalltalk.send($receiver, "_ifFalse_", [(function(){return smalltalk.send(item, "_turnYellow", []);})]));
 ((($receiver = ((($receiver = smalltalk.send(self['@description'], "_size", [])).klass === smalltalk.Number) ? $receiver >(0) : smalltalk.send($receiver, "__gt", [(0)]))).klass === smalltalk.Boolean) ? ($receiver ? (function(){return smalltalk.send(item, "_withDescription_", [self['@description']]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return smalltalk.send(item, "_withDescription_", [self['@description']]);})]));
 return item;
+return self;}
+}),
+smalltalk.Job);
+
+smalltalk.addMethod(
+unescape('_asPage'),
+smalltalk.method({
+selector: unescape('asPage'),
+fn: function (){
+var self=this;
+return (($receiver = self['@page']) == nil || $receiver == undefined) ? (function(){return (self['@page']=(function($rec){smalltalk.send($rec, "_withContent_", [(function(html){return smalltalk.send(self, "_renderPageOn_", [html]);})]);return smalltalk.send($rec, "_named_", [self['@myname']]);})(smalltalk.send((smalltalk.JQPage || JQPage), "_new", [])));})() : $receiver;
+return self;}
+}),
+smalltalk.Job);
+
+smalltalk.addMethod(
+unescape('_renderPageOn_'),
+smalltalk.method({
+selector: unescape('renderPageOn%3A'),
+fn: function (html){
+var self=this;
+smalltalk.send(html, "_with_", [smalltalk.send("I am the renderPageOn method for: ", "__comma", [self['@myname']])]);
 return self;}
 }),
 smalltalk.Job);

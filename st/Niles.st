@@ -1,6 +1,6 @@
 Smalltalk current createPackage: 'Niles' properties: #{}!
 Object subclass: #Job
-	instanceVariableNames: 'description url buildable stable myname'
+	instanceVariableNames: 'description url buildable stable myname page'
 	category: 'Niles'!
 
 !Job methodsFor: 'not yet classified'!
@@ -29,7 +29,7 @@ asListItem
 			withLabel: myname;
 			withOnClick: [ :event |
 				| page |
-				page := JQPage new named: myname.
+				page := self asPage.
 				page appendToJQuery: 'body' asJQuery.
 				<jQuery.mobile.changePage('#' + page._elementId());>.
 				event preventDefault ].
@@ -37,6 +37,17 @@ asListItem
 	description size > 0
 				ifTrue: [ item withDescription: description ].
 	^ item.
+!
+
+asPage
+	^ page ifNil: [
+		page := JQPage new
+				withContent: [ :html | self renderPageOn: html ];
+				named: myname].
+!
+
+renderPageOn: html
+	html with: 'I am the renderPageOn method for: ', myname.
 ! !
 
 Object subclass: #NilesApp

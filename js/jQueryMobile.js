@@ -1,5 +1,5 @@
 smalltalk.addPackage('jQueryMobile', {});
-smalltalk.addClass('JQPage', smalltalk.Widget, ['elementId'], 'jQueryMobile');
+smalltalk.addClass('JQPage', smalltalk.Widget, ['elementId', 'contentBlock'], 'jQueryMobile');
 smalltalk.addMethod(
 unescape('_initialize'),
 smalltalk.method({
@@ -8,9 +8,10 @@ category: 'not yet classified',
 fn: function (){
 var self=this;
 (name="");
+(self['@contentBlock']=(function(){return nil;}));
 return self;},
 args: [],
-source: unescape('initialize%0A%09name%20%3A%3D%20%27%27.'),
+source: unescape('initialize%0A%09name%20%3A%3D%20%27%27.%0A%09contentBlock%20%3A%3D%20%5B%5D.'),
 messageSends: [],
 referencedClasses: []
 }),
@@ -39,27 +40,11 @@ selector: unescape('renderOn%3A'),
 category: 'not yet classified',
 fn: function (html){
 var self=this;
-(function($rec){smalltalk.send($rec, "_id_", [smalltalk.send(self, "_elementId", [])]);smalltalk.send($rec, "_at_put_", [unescape("data-role"), "page"]);return smalltalk.send($rec, "_with_", [(function(){(function($rec){smalltalk.send($rec, "_at_put_", [unescape("data-role"), "header"]);return smalltalk.send($rec, "_with_", [(typeof name == 'undefined' ? nil : name)]);})(smalltalk.send(html, "_div", []));return (function($rec){smalltalk.send($rec, "_at_put_", [unescape("data-role"), "content"]);return smalltalk.send($rec, "_with_", [(function(){return smalltalk.send(self, "_renderContentOn_", [html]);})]);})(smalltalk.send(html, "_div", []));})]);})(smalltalk.send(html, "_div", []));
+(function($rec){smalltalk.send($rec, "_id_", [smalltalk.send(self, "_elementId", [])]);smalltalk.send($rec, "_at_put_", [unescape("data-role"), "page"]);return smalltalk.send($rec, "_with_", [(function(){(function($rec){smalltalk.send($rec, "_at_put_", [unescape("data-role"), "header"]);return smalltalk.send($rec, "_with_", [(typeof name == 'undefined' ? nil : name)]);})(smalltalk.send(html, "_div", []));return (function($rec){smalltalk.send($rec, "_at_put_", [unescape("data-role"), "content"]);return smalltalk.send($rec, "_with_", [(function(){return smalltalk.send(self['@contentBlock'], "_value_", [html]);})]);})(smalltalk.send(html, "_div", []));})]);})(smalltalk.send(html, "_div", []));
 return self;},
 args: ["html"],
-source: unescape('renderOn%3A%20html%0A%09html%20div%0A%09%09id%3A%20self%20elementId%3B%0A%09%09at%3A%20%27data-role%27%20put%3A%20%27page%27%3B%0A%09%09with%3A%20%5B%0A%09%09%09html%20div%0A%09%09%09%09at%3A%20%27data-role%27%20put%3A%20%27header%27%3B%0A%09%09%09%09with%3A%20name.%0A%09%09%09html%20div%0A%09%09%09%09at%3A%20%27data-role%27%20put%3A%20%27content%27%3B%0A%09%09%09%09with%3A%20%5B%20self%20renderContentOn%3A%20html%20%5D%5D.%0A'),
-messageSends: ["id:", "elementId", "at:put:", "with:", "div", "renderContentOn:"],
-referencedClasses: []
-}),
-smalltalk.JQPage);
-
-smalltalk.addMethod(
-unescape('_renderContentOn_'),
-smalltalk.method({
-selector: unescape('renderContentOn%3A'),
-category: 'not yet classified',
-fn: function (html){
-var self=this;
-smalltalk.send(html, "_with_", ["Fancy"]);
-return self;},
-args: ["html"],
-source: unescape('renderContentOn%3A%20html%0A%09html%20with%3A%20%27Fancy%27.'),
-messageSends: ["with:"],
+source: unescape('renderOn%3A%20html%0A%09html%20div%0A%09%09id%3A%20self%20elementId%3B%0A%09%09at%3A%20%27data-role%27%20put%3A%20%27page%27%3B%0A%09%09with%3A%20%5B%0A%09%09%09html%20div%0A%09%09%09%09at%3A%20%27data-role%27%20put%3A%20%27header%27%3B%0A%09%09%09%09with%3A%20name.%0A%09%09%09html%20div%0A%09%09%09%09at%3A%20%27data-role%27%20put%3A%20%27content%27%3B%0A%09%09%09%09with%3A%20%5B%20contentBlock%20value%3A%20html%20%5D%5D.'),
+messageSends: ["id:", "elementId", "at:put:", "with:", "div", "value:"],
 referencedClasses: []
 }),
 smalltalk.JQPage);
@@ -92,6 +77,22 @@ return self;},
 args: [],
 source: unescape('asJQuery%0A%09%5E%20%28%27%23%27%2C%20self%20elementId%29%20asJQuery.'),
 messageSends: ["asJQuery", unescape("%2C"), "elementId"],
+referencedClasses: []
+}),
+smalltalk.JQPage);
+
+smalltalk.addMethod(
+unescape('_withContent_'),
+smalltalk.method({
+selector: unescape('withContent%3A'),
+category: 'not yet classified',
+fn: function (aBlock){
+var self=this;
+(self['@contentBlock']=aBlock);
+return self;},
+args: ["aBlock"],
+source: unescape('withContent%3A%20aBlock%0A%09contentBlock%20%3A%3D%20aBlock.'),
+messageSends: [],
 referencedClasses: []
 }),
 smalltalk.JQPage);
