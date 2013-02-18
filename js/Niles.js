@@ -141,11 +141,11 @@ selector: unescape('asPage'),
 category: 'not yet classified',
 fn: function (){
 var self=this;
-return (($receiver = self['@page']) == nil || $receiver == undefined) ? (function(){return (self['@page']=(function($rec){smalltalk.send($rec, "_withContent_", [(function(html){return smalltalk.send(self, "_renderPageOn_", [html]);})]);return smalltalk.send($rec, "_named_", [self['@myname']]);})(smalltalk.send((smalltalk.JQPage || JQPage), "_new", [])));})() : $receiver;
+return (($receiver = self['@page']) == nil || $receiver == undefined) ? (function(){smalltalk.send(smalltalk.send((typeof window == 'undefined' ? nil : window), "_console", []), "_log_", ["Creating a new page"]);return (self['@page']=(function($rec){smalltalk.send($rec, "_withContent_", [(function(html){return smalltalk.send(self, "_renderPageOn_", [html]);})]);return smalltalk.send($rec, "_named_", [self['@myname']]);})(smalltalk.send((smalltalk.JQPage || JQPage), "_new", [])));})() : $receiver;
 return self;},
 args: [],
-source: unescape('asPage%0A%09%5E%20page%20ifNil%3A%20%5B%0A%09%09page%20%3A%3D%20JQPage%20new%0A%09%09%09%09withContent%3A%20%5B%20%3Ahtml%20%7C%20self%20renderPageOn%3A%20html%20%5D%3B%0A%09%09%09%09named%3A%20myname%5D.'),
-messageSends: ["ifNil:", "withContent:", "renderPageOn:", "named:", "new"],
+source: unescape('asPage%0A%09%5E%20page%20ifNil%3A%20%5B%0A%09%09%22%28%3CjQuery%28%27%23page-derp%27%29.size%28%29%3E%29%20%3E%200%20ifTrue%3A%20%5B%20window%20alert%3A%20%27lulz%27%20%5D.%22%0A%09%09window%20console%20log%3A%20%27Creating%20a%20new%20page%27.%0A%09%09page%20%3A%3D%20JQPage%20new%0A%09%09%09%09withContent%3A%20%5B%20%3Ahtml%20%7C%20self%20renderPageOn%3A%20html%20%5D%3B%0A%09%09%09%09named%3A%20myname%5D.'),
+messageSends: ["ifNil:", "log:", "console", "withContent:", "renderPageOn:", "named:", "new"],
 referencedClasses: ["JQPage"]
 }),
 smalltalk.Job);

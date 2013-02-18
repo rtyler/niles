@@ -105,7 +105,7 @@ smalltalk.method({
 selector: unescape('asPage'),
 fn: function (){
 var self=this;
-return (($receiver = self['@page']) == nil || $receiver == undefined) ? (function(){return (self['@page']=(function($rec){smalltalk.send($rec, "_withContent_", [(function(html){return smalltalk.send(self, "_renderPageOn_", [html]);})]);return smalltalk.send($rec, "_named_", [self['@myname']]);})(smalltalk.send((smalltalk.JQPage || JQPage), "_new", [])));})() : $receiver;
+return (($receiver = self['@page']) == nil || $receiver == undefined) ? (function(){smalltalk.send(smalltalk.send((typeof window == 'undefined' ? nil : window), "_console", []), "_log_", ["Creating a new page"]);return (self['@page']=(function($rec){smalltalk.send($rec, "_withContent_", [(function(html){return smalltalk.send(self, "_renderPageOn_", [html]);})]);return smalltalk.send($rec, "_named_", [self['@myname']]);})(smalltalk.send((smalltalk.JQPage || JQPage), "_new", [])));})() : $receiver;
 return self;}
 }),
 smalltalk.Job);

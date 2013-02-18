@@ -2,14 +2,21 @@
   %head
     %title
       Niles
-    = embed_amber
     %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}/
-    - if Resin.development?
-      %script{:type => 'text/javascript', :src => '/js/jquery.mobile-1.0.1.js'}
-      %link{:rel => 'stylesheet', :media => 'screen', :href => '/css/jquery.mobile-1.0.1.css'}
+    - if development?
+      = embed_amber
+      %script{:type => 'text/javascript', :src => '/js/jquery.mobile.custom.js'}
+      %link{:rel => 'stylesheet', :media => 'screen', :href => '/css/jquery.mobile.custom.css'}
+      %link{:rel => 'stylesheet', :media => 'screen', :href => '/css/jquery.mobile.custom.structure.css'}
+      %link{:rel => 'stylesheet', :media => 'screen', :href => '/css/jquery.mobile.custom.theme.css'}
     - else
-      %script{:type => 'text/javascript', :src => '/js/jquery.mobile-1.0.1.min.js'}
-      %link{:rel => 'stylesheet', :media => 'screen', :href => '/css/jquery.mobile-1.0.1.min.css'}
+      %link{:rel => 'stylesheet', :media => 'screen', :href => '/css/jquery.mobile.custom.min.css'}
+      %link{:rel => 'stylesheet', :media => 'screen', :href => '/css/jquery.mobile.custom.structure.min.css'}
+      %link{:rel => 'stylesheet', :media => 'screen', :href => '/css/jquery.mobile.custom.theme.min.css'}
+      %script{:type => 'text/javascript', :src => '/js/app.deploy.js'}
+        %script{:type => 'text/javascript', :src => '/js/jquery.mobile.custom.min.js'}
+      %script{:type => 'text/javascript'}
+        loadAmber({deploy: true});
     %script{:type => 'text/javascript'}
       jQuery.mobile.loadingMessage = false;
   %body
@@ -20,12 +27,12 @@
             Niles
         %div{:class => 'ui-block-b'}
           %div{:style => 'margin-top: 10px;'}
-            %input{:id => 'url-input', :value => 'http://ci.jenkins-ci.org/view/Jenkins core/'}/
+            %input{:id => 'url-input', :value => 'https://ci.jenkins-ci.org/view/Jenkins core/'}/
         %div{:class => 'ui-block-c'}
           %div{:style => 'margin-top: 10px;'}
             %button{:style => 'float: right;', :type => 'submit', :onclick => 'smalltalk.NilesApp._current()._submitForm(); return false;'}
               Load
-            - if Resin.development?
+            - if development?
               %div{:style => 'float: right;'}
                 %button{:onclick => "smalltalk.Browser._open();"}
                   Run IDE
